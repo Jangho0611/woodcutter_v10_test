@@ -4,6 +4,11 @@
  */
 
 class CostCalculator {
+    static DEFAULT_LONG_PRICES = {
+        t12: { price100up: 5000, price100down: 7000 },
+        t23: { price100up: 7000, price100down: 10000 },
+        t24: { price100up: 12000, price100down: 15000 }
+    };
     /**
      * 원가 계산
      * @param {Array} bins - 최적화 결과 (판재 배열)
@@ -142,6 +147,8 @@ class CostCalculator {
             return 0;
         }
 
+        settings = settings || {};
+
         if (bin.cutDetails.some(detail => detail && detail.fullSpan !== true)) {
             return 0;
         }
@@ -174,7 +181,7 @@ class CostCalculator {
         let fixedPrice = 0;
 
         // settings에서 쭉절단 단가 가져오기
-        const longPrices = settings.longSidePrices;
+        const longPrices = settings.longSidePrices || this.DEFAULT_LONG_PRICES;
         
         if (thickness <= 12) {
             fixedPrice = useUnder100Price ? longPrices.t12.price100down : longPrices.t12.price100up;

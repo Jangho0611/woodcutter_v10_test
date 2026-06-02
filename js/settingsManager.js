@@ -5,6 +5,11 @@
 
 class SettingsManager {
     static STORAGE_KEY = 'woodcutter_settings';
+    static DEFAULT_LONG_SIDE_PRICES = {
+        t12: { price100up: 5000, price100down: 7000 },
+        t23: { price100up: 7000, price100down: 10000 },
+        t24: { price100up: 12000, price100down: 15000 }
+    };
 
     /**
      * 기본 설정값
@@ -17,7 +22,12 @@ class SettingsManager {
         cutMethod: 'guillotine',
         optimizationPriority: 'material',
         cutPrice: 1500,
-        enableWatermark: true
+        enableWatermark: true,
+        longSidePrices: {
+            t12: { ...SettingsManager.DEFAULT_LONG_SIDE_PRICES.t12 },
+            t23: { ...SettingsManager.DEFAULT_LONG_SIDE_PRICES.t23 },
+            t24: { ...SettingsManager.DEFAULT_LONG_SIDE_PRICES.t24 }
+        }
     };
 
     /**
@@ -102,6 +112,52 @@ class SettingsManager {
             ? settings.enableWatermark
             : this.DEFAULT_SETTINGS.enableWatermark;
 
+        const longSidePrices = settings.longSidePrices || {};
+        validated.longSidePrices = {
+            t12: {
+                price100up: this.validateNumber(
+                    longSidePrices.t12 && longSidePrices.t12.price100up,
+                    0,
+                    Infinity,
+                    this.DEFAULT_LONG_SIDE_PRICES.t12.price100up
+                ),
+                price100down: this.validateNumber(
+                    longSidePrices.t12 && longSidePrices.t12.price100down,
+                    0,
+                    Infinity,
+                    this.DEFAULT_LONG_SIDE_PRICES.t12.price100down
+                )
+            },
+            t23: {
+                price100up: this.validateNumber(
+                    longSidePrices.t23 && longSidePrices.t23.price100up,
+                    0,
+                    Infinity,
+                    this.DEFAULT_LONG_SIDE_PRICES.t23.price100up
+                ),
+                price100down: this.validateNumber(
+                    longSidePrices.t23 && longSidePrices.t23.price100down,
+                    0,
+                    Infinity,
+                    this.DEFAULT_LONG_SIDE_PRICES.t23.price100down
+                )
+            },
+            t24: {
+                price100up: this.validateNumber(
+                    longSidePrices.t24 && longSidePrices.t24.price100up,
+                    0,
+                    Infinity,
+                    this.DEFAULT_LONG_SIDE_PRICES.t24.price100up
+                ),
+                price100down: this.validateNumber(
+                    longSidePrices.t24 && longSidePrices.t24.price100down,
+                    0,
+                    Infinity,
+                    this.DEFAULT_LONG_SIDE_PRICES.t24.price100down
+                )
+            }
+        };
+
         return validated;
     }
 
@@ -146,6 +202,12 @@ class SettingsManager {
             cutDirection: document.getElementById('cutDirection'),
             cutMethod: document.getElementById('cutMethod'),
             optimizationPriority: document.getElementById('optimizationPriority'),
+            longPrice12Up: document.getElementById('longPrice_12T_100up'),
+            longPrice12Down: document.getElementById('longPrice_12T_100down'),
+            longPrice23Up: document.getElementById('longPrice_23T_100up'),
+            longPrice23Down: document.getElementById('longPrice_23T_100down'),
+            longPrice24Up: document.getElementById('longPrice_24T_100up'),
+            longPrice24Down: document.getElementById('longPrice_24T_100down'),
             enableWatermark: document.getElementById('enableWatermark')
         };
 
@@ -189,7 +251,51 @@ class SettingsManager {
             cutMethod: elements.cutMethod ? elements.cutMethod.value : this.DEFAULT_SETTINGS.cutMethod,
             optimizationPriority: elements.optimizationPriority ? elements.optimizationPriority.value : this.DEFAULT_SETTINGS.optimizationPriority,
             cutPrice: cutPrice,
-            enableWatermark: elements.enableWatermark ? elements.enableWatermark.checked : this.DEFAULT_SETTINGS.enableWatermark
+            enableWatermark: elements.enableWatermark ? elements.enableWatermark.checked : this.DEFAULT_SETTINGS.enableWatermark,
+            longSidePrices: {
+                t12: {
+                    price100up: this.validateNumber(
+                        elements.longPrice12Up ? parseFloat(elements.longPrice12Up.value) : undefined,
+                        0,
+                        Infinity,
+                        this.DEFAULT_LONG_SIDE_PRICES.t12.price100up
+                    ),
+                    price100down: this.validateNumber(
+                        elements.longPrice12Down ? parseFloat(elements.longPrice12Down.value) : undefined,
+                        0,
+                        Infinity,
+                        this.DEFAULT_LONG_SIDE_PRICES.t12.price100down
+                    )
+                },
+                t23: {
+                    price100up: this.validateNumber(
+                        elements.longPrice23Up ? parseFloat(elements.longPrice23Up.value) : undefined,
+                        0,
+                        Infinity,
+                        this.DEFAULT_LONG_SIDE_PRICES.t23.price100up
+                    ),
+                    price100down: this.validateNumber(
+                        elements.longPrice23Down ? parseFloat(elements.longPrice23Down.value) : undefined,
+                        0,
+                        Infinity,
+                        this.DEFAULT_LONG_SIDE_PRICES.t23.price100down
+                    )
+                },
+                t24: {
+                    price100up: this.validateNumber(
+                        elements.longPrice24Up ? parseFloat(elements.longPrice24Up.value) : undefined,
+                        0,
+                        Infinity,
+                        this.DEFAULT_LONG_SIDE_PRICES.t24.price100up
+                    ),
+                    price100down: this.validateNumber(
+                        elements.longPrice24Down ? parseFloat(elements.longPrice24Down.value) : undefined,
+                        0,
+                        Infinity,
+                        this.DEFAULT_LONG_SIDE_PRICES.t24.price100down
+                    )
+                }
+            }
         };
     }
 }
