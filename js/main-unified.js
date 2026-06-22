@@ -695,7 +695,7 @@ class WoodcutterApp {
 
             // 헤더
             const header = document.createElement('div');
-            header.style.cssText = 'display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding: 12px; background: linear-gradient(135deg, #48BB78 0%, #123628 100%); border-radius: 8px; color: white;';
+            header.style.cssText = 'display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; padding: 12px; background: linear-gradient(135deg, #CBB89D 0%, #8F7A63 100%); border-radius: 8px; color: white;';
 
             const title = count > 1 ? `패턴 ${index + 1} (${count}장 동일)` : `패턴 ${index + 1}`;
             header.innerHTML = `
@@ -881,13 +881,13 @@ class WoodcutterApp {
             // 부품 배경
             const PART_COLORS = [
                 '#DBEAFE', // A - 연파랑
-                '#DCFCE7', // B - 연초록
+                '#EFE3D4', // B - 연한 오크
                 '#FEF9C3', // C - 연노랑
                 '#FFEDD5', // D - 연주황
                 '#F3E8FF', // E - 연보라
                 '#FCE7F3', // F - 연핑크
                 '#E0F2FE', // G - 하늘
-                '#ECFDF5', // H - 민트
+                '#F8F5F0', // H - 연한 베이지
             ];
 
             const labelIndex = label ? label.charCodeAt(0) - 65 : 0;

@@ -7,25 +7,25 @@
 /* ===== CSS Variables (Design Tokens) ===== */
 :root {
     /* Brand Colors */
-    --color-primary: #48BB78;
-    --color-primary-dark: #123628;
-    --color-primary-light: #F0FFF4;
-    --color-primary-hover: #38A169;
-    --color-secondary: #0a2318;
-    --color-success: #4CAF50;
+    --color-primary: #CBB89D;
+    --color-primary-dark: #8F7A63;
+    --color-primary-light: #F8F5F0;
+    --color-primary-hover: #B7A085;
+    --color-secondary: #A9967F;
+    --color-success: #B8A48A;
     --color-warning: #F59E0B;
     --color-danger: #EF4444;
     --color-danger-dark: #DC2626;
 
     /* Neutrals */
     --color-white: #FFFFFF;
-    --color-bg: #F1F5F0;
+    --color-bg: #F6F3EE;
     --color-bg-subtle: #F8FAF8;
-    --color-surface: #FFFFFF;
-    --color-border: #D1E7D5;
-    --color-border-light: #E8F5E9;
-    --color-text: #1A2E1A;
-    --color-text-secondary: #4A6B4A;
+    --color-surface: #FFFDFA;
+    --color-border: #E5DDD1;
+    --color-border-light: #F1EBE2;
+    --color-text: #4C433B;
+    --color-text-secondary: #7B7165;
     --color-text-muted: #8CA68C;
 
     /* Glassmorphism */
@@ -35,10 +35,10 @@
     --glass-blur: 16px;
 
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, #48BB78 0%, #2D7A4F 50%, #123628 100%);
-    --gradient-header: linear-gradient(135deg, #123628 0%, #1A4A35 100%);
-    --gradient-cta: linear-gradient(135deg, #48BB78 0%, #38A169 100%);
-    --gradient-surface: linear-gradient(180deg, rgba(72,187,120,0.04) 0%, rgba(255,255,255,0) 100%);
+    --gradient-primary: linear-gradient(135deg, #DDD1BF 0%, #CBB89D 55%, #A88F72 100%);
+    --gradient-header: linear-gradient(135deg, #A88F72 0%, #8F7A63 100%);
+    --gradient-cta: linear-gradient(135deg, #D8CCBA 0%, #CBB89D 100%);
+    --gradient-surface: linear-gradient(180deg, rgba(203, 184, 157, 0.05) 0%, rgba(255,255,255,0) 100%);
 
     /* Spacing */
     --space-xs: 4px;
