@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>육아 기록</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header>
+      <h1>현우 육아 기록</h1>
+      <p>수유량을 기록하고 오늘의 기록을 확인하세요.</p>
+    </header>
+
+    <section class="card entry-card">
+      <h2>수유 기록</h2>
+      <div class="form-row">
+        <label for="feedAmount">수유량 (ml)</label>
+        <input id="feedAmount" type="number" placeholder="수유량(ml)" min="0">
+      </div>
+      <button id="feedBtn" class="primary">저장</button>
+    </section>
+
+    <section class="card log-card">
+      <h2>오늘 기록</h2>
+      <ul id="feedList"></ul>
+      <p id="emptyState" class="empty-state">아직 기록이 없습니다.</p>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
