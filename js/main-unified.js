@@ -1306,20 +1306,40 @@ class WoodcutterApp {
         ctx.font = '18px "Noto Sans KR", sans-serif';
         const labeledGroups = this.state.labeledGroups;
         if (labeledGroups && labeledGroups.length > 0) {
-            labeledGroups.forEach(group => {
+            const columnCount = labeledGroups.length <= 20 ? 1 : (labeledGroups.length <= 45 ? 2 : 3);
+            const itemsPerColumn = Math.ceil(labeledGroups.length / columnCount);
+            const startX = margin + 20;
+            const startY = y;
+            const columnWidth = (canvas.width - startX - margin) / columnCount;
+            const rowHeight = 28;
+            const baseFontSize = columnCount === 3 ? 16 : 18;
+
+            labeledGroups.forEach((group, index) => {
                 const infoText = `${group.label}: ${group.width}×${group.height}mm - `;
                 const qtyText = `(${group.count}개)`;
+                const columnIndex = Math.floor(index / itemsPerColumn);
+                const rowIndex = index % itemsPerColumn;
+                const itemX = startX + columnIndex * columnWidth;
+                const itemY = startY + rowIndex * rowHeight;
+
+                ctx.font = `${baseFontSize}px "Noto Sans KR", sans-serif`;
+                const infoWidth = ctx.measureText(infoText).width;
+                ctx.font = `bold ${baseFontSize}px "Noto Sans KR", sans-serif`;
+                const qtyWidth = ctx.measureText(qtyText).width;
+                const maxTextWidth = columnWidth - 12;
+                const totalWidth = infoWidth + qtyWidth;
+                const fontSize = totalWidth > maxTextWidth
+                    ? Math.max(12, Math.floor(baseFontSize * maxTextWidth / totalWidth))
+                    : baseFontSize;
 
                 // 기본 정보 (Normal)
-                ctx.font = '18px "Noto Sans KR", sans-serif';
-                ctx.fillText(infoText, margin + 20, y);
+                ctx.font = `${fontSize}px "Noto Sans KR", sans-serif`;
+                ctx.fillText(infoText, itemX, itemY);
 
                 // 수량 정보 (Bold + 괄호)
-                const infoWidth = ctx.measureText(infoText).width;
-                ctx.font = 'bold 18px "Noto Sans KR", sans-serif';
-                ctx.fillText(qtyText, margin + 20 + infoWidth, y);
-
-                y += 28;
+                const fittedInfoWidth = ctx.measureText(infoText).width;
+                ctx.font = `bold ${fontSize}px "Noto Sans KR", sans-serif`;
+                ctx.fillText(qtyText, itemX + fittedInfoWidth, itemY);
             });
         }
 
