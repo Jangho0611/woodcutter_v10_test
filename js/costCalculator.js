@@ -201,8 +201,8 @@ class CostCalculator {
             return 18;
         }
         const input = document.getElementById('boardThickness');
-        const thickness = input ? parseFloat(input.value) : 18;
-        return Number.isFinite(thickness) ? thickness : 18;
+        const thickness = input ? parseFloat(input.value) : 12;
+        return Number.isFinite(thickness) ? thickness : 12;
     }
 }
 

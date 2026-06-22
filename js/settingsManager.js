@@ -240,7 +240,7 @@ class SettingsManager {
         };
 
         // 두께에 따른 절단 단가 자동 계산
-        const thickness = elements.boardThickness ? parseFloat(elements.boardThickness.value) : 18;
+        const thickness = elements.boardThickness ? parseFloat(elements.boardThickness.value) : 12;
         const cutPrice = window.CostCalculator ? window.CostCalculator.getCutPriceByThickness(thickness) : 1500;
 
         return {

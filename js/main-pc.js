@@ -133,7 +133,7 @@ class WoodcutterPC {
 
         if (!thicknessInput || !cutPriceDisplay) return;
 
-        const thickness = parseFloat(thicknessInput.value) || 18;
+        const thickness = parseFloat(thicknessInput.value) || 12;
         const cutPrice = CostCalculator.getCutPriceByThickness(thickness);
         cutPriceDisplay.textContent = `${cutPrice.toLocaleString('ko-KR')}원/회`;
     }

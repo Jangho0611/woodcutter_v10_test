@@ -292,7 +292,7 @@ class WoodcutterApp {
 
         if (!thicknessInput || !cutPriceDisplay) return;
 
-        const thickness = parseFloat(thicknessInput.value) || 18;
+        const thickness = parseFloat(thicknessInput.value) || 12;
         const cutPrice = CostCalculator.getCutPriceByThickness(thickness);
         cutPriceDisplay.textContent = `${cutPrice.toLocaleString('ko-KR')}원/회`;
 
@@ -1439,7 +1439,7 @@ class WoodcutterApp {
 
             document.getElementById('boardWidth').value = '1220';
             document.getElementById('boardHeight').value = '2440';
-            document.getElementById('boardThickness').value = '18';
+            document.getElementById('boardThickness').value = '12';
             document.getElementById('considerGrain').checked = false;
             document.getElementById('enableTrim').checked = false;
             this.updateTrimWarning();
@@ -1521,7 +1521,7 @@ class WoodcutterApp {
 
                     document.getElementById('boardWidth').value = project.boardWidth;
                     document.getElementById('boardHeight').value = project.boardHeight;
-                    document.getElementById('boardThickness').value = project.boardThickness || '18';
+                    document.getElementById('boardThickness').value = project.boardThickness || '12';
                     document.getElementById('considerGrain').checked = project.considerGrain;
 
                     this.state.updateBoardSpec({
