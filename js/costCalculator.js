@@ -198,7 +198,7 @@ class CostCalculator {
 
     static getBoardThickness() {
         if (typeof document === 'undefined') {
-            return 18;
+            return 12;
         }
         const input = document.getElementById('boardThickness');
         const thickness = input ? parseFloat(input.value) : 12;
